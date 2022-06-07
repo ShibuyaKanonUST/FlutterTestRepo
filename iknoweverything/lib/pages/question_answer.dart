@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:iknoweverything/models/answer.dart';
@@ -84,21 +85,7 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 60),
-          Container(
-              width: 0.5 * MediaQuery.of(context).size.width,
-              child: TextField(
-                controller: _questionFieldController,
-                decoration: InputDecoration(
-                    labelText: 'Ask a Question', border: OutlineInputBorder()),
-              )),
-          Container(
-              width: 0.5 * MediaQuery.of(context).size.width,
-              child: TextField(
-                controller: _questionFieldController,
-                decoration: InputDecoration(
-                    labelText: 'Test', border: OutlineInputBorder()),
-              )),
+
           SizedBox(height: 50),
           Text('Bad guy Desmond',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           SizedBox(height: 20),
@@ -118,13 +105,13 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                   child: TextField(
                   controller: _questionFieldController,
                   decoration: InputDecoration(
-                  labelText: 'COMP2211 grade F', border: OutlineInputBorder()),
+                  labelText: 'Feedback of the course', border: OutlineInputBorder()),
                 )),
                 SizedBox(height : 50),
                 Text(
                   'Your COMP2211 grade'
                 ),
-                //SizedBox(height: 20),
+                SizedBox(height: 20),
                 Row(
                   children:[
                     RaisedButton(
@@ -154,7 +141,10 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
           ),
 
           if (grade=='A')
-            Container(
+          Stack(
+            alignment: AlignmentDirectional.bottomCenter,
+            children:[
+              Container(
                   height : 400,
                   width: 400,
                   decoration: BoxDecoration(
@@ -166,10 +156,17 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                     ),
                   )
                   
-            ),
+              ),
+              Positioned(
+                child:Text('Congratulations!',style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold)))
+            ]
+          ),
 
           if (grade=='B')
-            Container(
+          Stack(
+            alignment: AlignmentDirectional.bottomCenter,
+            children : [
+              Container(
                   height : 400,
                   width: 400,
                   decoration: BoxDecoration(
@@ -180,10 +177,17 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                       image: NetworkImage('images/85ac1264e77e338d659c549a0be45d34.jpg')
                     ),
                   )
-            ),
+              ),
+              Positioned(
+                child:Text('Not bad',style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold)))
+            ]
+          ),
 
         if (grade=='C')
-          Container(
+        Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children : [
+            Container(
                   height : 400,
                   width: 400,
                   decoration: BoxDecoration(
@@ -194,75 +198,12 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                       image: NetworkImage('images/IMG-20220604-WA0004.jpg')
                     ),
                   )
-          ),
-
-
-
-
-          if (_currentAnswer != null)
-            Stack(
-              children: [
-                Container(
-                  height: 250,
-                  width: 400,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      //image: NetworkImage(_currentAnswer.image),
-                      image: NetworkImage('images/IMG-20220604-WA0004.jpg')
-                    ),
-                  ),
-                ),
-                Positioned.fill(
-                    bottom: 20,
-                    right: 20,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text(
-                        _currentAnswer.answer.toUpperCase(),
-                        style: TextStyle(color: Colors.white, fontSize: 24),
-                      ),
-                    )),
-              ],
             ),
-          if (_currentAnswer != null)
-            SizedBox(
-              height: 20,
-            ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              RaisedButton(
-                onPressed: _handleGetAnswer,
-                child: Text(
-                  'Get Answer',
-                  style: TextStyle(color: Colors.white),
-                ),
-                color: Theme.of(context).primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              RaisedButton(
-                onPressed: _handleResetOperation,
-                child: Text(
-                  'Reset',
-                  style: TextStyle(color: Colors.white),
-                ),
-                color: Theme.of(context).primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+            Positioned(
+              child:Text('GG nah hah',style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold)))
+          ]
+        )
+      ]),
     ));
   }
 }

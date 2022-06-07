@@ -32,6 +32,10 @@ dependencies:
     # To make API requests
     http: ^0.12.2
 
+    #GetX
+    get: ^4.6.1
+
+
 dev_dependencies:
     flutter_test:
         sdk: flutter
