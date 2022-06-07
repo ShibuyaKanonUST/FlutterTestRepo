@@ -108,13 +108,27 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                   labelText: 'COMP2211 grade F', border: OutlineInputBorder()),
                 )),
                 Text(
-                  'GG nah hah'
+                  'Your COMP2211 grade'
                 ),
-                RaisedButton(
-                  onPressed: (){print("haha");},
-                  color : Colors.blue,
-                  child : Text('No A for COMP2211')
-                )]
+                Row(
+                  children:[
+                    RaisedButton(
+                      onPressed: (){print("Congratulations you get A");},
+                      color : Colors.blue,
+                      child : Text('A')
+                    ),
+                    RaisedButton(
+                      onPressed: (){print("B, not bad");},
+                      color : Colors.red,
+                      child : Text('B')
+                    ),
+                    RaisedButton(
+                      onPressed: (){print("C, gg nah hah");},
+                      color : Colors.amber,
+                      child : Text('C')
+                    )]
+                ),
+               ]
               ),
               Text(
                 'bad guy'
