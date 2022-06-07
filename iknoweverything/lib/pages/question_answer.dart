@@ -54,19 +54,37 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
     });
   }
 
+
+  //My impl : Set image
+  String grade = null;
+  void _setimageA(){
+      grade = 'A';
+      print(grade);
+  }
+   void _setimageB(){
+      grade = 'B';
+      print(grade);
+  }
+   void _setimageC(){
+      grade = 'C';
+      print(grade);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('I Know Everything'),
+        title: Text('COMP2211 Course Website'),
         elevation: 0,
         backgroundColor: Colors.teal,
       ),
-      body: Column(
+      body: SingleChildScrollView(
+      child : Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(height: 60),
           Container(
               width: 0.5 * MediaQuery.of(context).size.width,
               child: TextField(
@@ -81,25 +99,20 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                 decoration: InputDecoration(
                     labelText: 'Test', border: OutlineInputBorder()),
               )),
+          SizedBox(height: 50),
+          Text('Bad guy Desmond',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+          SizedBox(height: 20),
           Row(
             mainAxisAlignment : MainAxisAlignment.center ,
             children: [
-              Text(
-                'Hi'
-              ),
+              Image.asset('images/IMG-20220604-WA0004.jpg'),
               SizedBox(
-                height: 200,
-              ),
-              Text(
-                'Desmond is'
-              ),
-              SizedBox(
-                height: 200,
+                width: 30,
               ),
               Column(
                 children:[
                 Container(
-                  height : 100,
+                  height : 50,
                   width: 0.2 * MediaQuery.of(context).size.width,
                   color : Colors.red,
                   child: TextField(
@@ -107,39 +120,85 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                   decoration: InputDecoration(
                   labelText: 'COMP2211 grade F', border: OutlineInputBorder()),
                 )),
+                SizedBox(height : 50),
                 Text(
                   'Your COMP2211 grade'
                 ),
+                //SizedBox(height: 20),
                 Row(
                   children:[
                     RaisedButton(
-                      onPressed: (){print("Congratulations you get A");},
+                      onPressed: (){_setimageA();setState(() {});},
                       color : Colors.blue,
                       child : Text('A')
                     ),
                     SizedBox(width:20),
                     RaisedButton(
-                      onPressed: (){print("B, not bad");},
+                      onPressed: (){_setimageB();setState(() {});},
                       color : Colors.red,
                       child : Text('B')
                     ),
                     SizedBox(width:20),
                     RaisedButton(
-                      onPressed: (){print("C, gg nah hah");},
+                      onPressed: (){_setimageC();setState(() {});},
                       color : Colors.amber,
                       child : Text('C')
                     )]
                 ),
                ]
               ),
-              Text(
-                'bad guy'
-              )
             ]
           ),
           SizedBox(
             height: 20,
           ),
+
+          if (grade=='A')
+            Container(
+                  height : 400,
+                  width: 400,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      //image: NetworkImage(_currentAnswer.image),
+                      image: NetworkImage('images/de50d7af59a21e04e31cd0b82d40f80a.jpg')
+                    ),
+                  )
+                  
+            ),
+
+          if (grade=='B')
+            Container(
+                  height : 400,
+                  width: 400,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      //image: NetworkImage(_currentAnswer.image),
+                      image: NetworkImage('images/85ac1264e77e338d659c549a0be45d34.jpg')
+                    ),
+                  )
+            ),
+
+        if (grade=='C')
+          Container(
+                  height : 400,
+                  width: 400,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      //image: NetworkImage(_currentAnswer.image),
+                      image: NetworkImage('images/IMG-20220604-WA0004.jpg')
+                    ),
+                  )
+          ),
+
+
+
+
           if (_currentAnswer != null)
             Stack(
               children: [
@@ -150,7 +209,8 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(_currentAnswer.image),
+                      //image: NetworkImage(_currentAnswer.image),
+                      image: NetworkImage('images/IMG-20220604-WA0004.jpg')
                     ),
                   ),
                 ),
@@ -203,6 +263,6 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
