@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iknoweverything/pages/question_answer.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(IKnowEverythingApp());
@@ -8,7 +9,7 @@ void main() {
 class IKnowEverythingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Haha Desmond',
       theme: ThemeData(primarySwatch: Colors.teal),
