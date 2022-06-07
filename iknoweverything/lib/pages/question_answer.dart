@@ -74,6 +74,53 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                 decoration: InputDecoration(
                     labelText: 'Ask a Question', border: OutlineInputBorder()),
               )),
+          Container(
+              width: 0.5 * MediaQuery.of(context).size.width,
+              child: TextField(
+                controller: _questionFieldController,
+                decoration: InputDecoration(
+                    labelText: 'Test', border: OutlineInputBorder()),
+              )),
+          Row(
+            mainAxisAlignment : MainAxisAlignment.center ,
+            children: [
+              Text(
+                'Hi'
+              ),
+              SizedBox(
+                height: 200,
+              ),
+              Text(
+                'Desmond is'
+              ),
+              SizedBox(
+                height: 200,
+              ),
+              Column(
+                children:[
+                Container(
+                  height : 100,
+                  width: 0.2 * MediaQuery.of(context).size.width,
+                  color : Colors.red,
+                  child: TextField(
+                  controller: _questionFieldController,
+                  decoration: InputDecoration(
+                  labelText: 'COMP2211 grade F', border: OutlineInputBorder()),
+                )),
+                Text(
+                  'GG nah hah'
+                ),
+                RaisedButton(
+                  onPressed: (){print("haha");},
+                  color : Colors.blue,
+                  child : Text('No A for COMP2211')
+                )]
+              ),
+              Text(
+                'bad guy'
+              )
+            ]
+          ),
           SizedBox(
             height: 20,
           ),
