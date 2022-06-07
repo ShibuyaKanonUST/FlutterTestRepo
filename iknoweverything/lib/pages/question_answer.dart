@@ -117,11 +117,13 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                       color : Colors.blue,
                       child : Text('A')
                     ),
+                    SizedBox(width:20),
                     RaisedButton(
                       onPressed: (){print("B, not bad");},
                       color : Colors.red,
                       child : Text('B')
                     ),
+                    SizedBox(width:20),
                     RaisedButton(
                       onPressed: (){print("C, gg nah hah");},
                       color : Colors.amber,
