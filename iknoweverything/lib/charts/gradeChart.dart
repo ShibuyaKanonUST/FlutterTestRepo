@@ -1,6 +1,7 @@
 /// Bar chart example
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
+import 'package:iknoweverything/charts/chartData.dart';
 
 class SimpleBarChart extends StatelessWidget {
   final List<charts.Series> seriesList;
@@ -29,13 +30,15 @@ class SimpleBarChart extends StatelessWidget {
   /// Create one series with sample hard coded data.
   static List<charts.Series<OrdinalSales, String>> _createSampleData() {
 
-    List<String> grade = ['A','B','C','D','F'];
-    List<int> distribution = [5, 45, 25, 7, 3];
+    //List<String> grade = ['A','B','C','D','F'];
+    //List<int> distribution = [5, 45, 25, 7, 3];
 
     final List<OrdinalSales>data = [];
+   
 
     for (int i=0; i<5; i++)
       data.add(new OrdinalSales(grade[i], distribution[i]));
+    
 
     return [
       new charts.Series<OrdinalSales, String>(
