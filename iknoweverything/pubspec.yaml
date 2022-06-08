@@ -33,7 +33,8 @@ dependencies:
     http: ^0.12.2
 
     #GetX
-    get: ^4.6.1
+    get: 4.1.4
+
 
 
 dev_dependencies:

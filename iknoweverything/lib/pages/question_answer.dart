@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:iknoweverything/controller/gradeController.dart';
+
 import 'package:iknoweverything/models/answer.dart';
 import 'package:get/get.dart';
+
 
 class QuestionAnswerPage extends StatefulWidget {
   @override
@@ -58,8 +59,8 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
 
 
   //My impl : Set image
-  String grade = null;
-  final GradeCotroller gradecontroller = Get.put(GradeCotroller());
+  String grade = 'X';
+  //final GradeCotroller gradecontroller = Get.put(GradeCotroller());
   void _setimageA(){
       grade = 'A';
       print(grade);
@@ -141,7 +142,10 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
           SizedBox(
             height: 20,
           ),
-          Text('Your COMP2211 grade is : '+gradecontroller.grade.value),
+          
+          if(grade!='X')
+          Text('Your COMP2211 grade is : '+grade),
+
            SizedBox(
             height: 20,
           ),
