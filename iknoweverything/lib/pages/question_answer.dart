@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:iknoweverything/models/answer.dart';
+import 'package:iknoweverything/controller/gradeController.dart';
 import 'package:get/get.dart';
-
+import 'package:iknoweverything/pages/gradeA.dart';
+import 'package:iknoweverything/pages/gradeB.dart';
+import 'package:iknoweverything/pages/gradeC.dart';
 
 class QuestionAnswerPage extends StatefulWidget {
   @override
@@ -57,145 +60,167 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
     });
   }
 
-
   //My impl : Set image
-  String grade = 'X';
-  //final GradeCotroller gradecontroller = Get.put(GradeCotroller());
-  void _setimageA(){
-      grade = 'A';
-      print(grade);
+  RxString grade = 'X'.obs;
+  final GradeCotroller gradecontroller = Get.put(GradeCotroller());
+  void _setimageA() {
+    grade = 'A'.obs;
+    print(grade);
   }
-   void _setimageB(){
-      grade = 'B';
-      print(grade);
+
+  void _setimageB() {
+    grade = 'B'.obs;
+    print(grade);
   }
-   void _setimageC(){
-      grade = 'C';
-      print(grade);
+
+  void _setimageC() {
+    grade = 'C'.obs;
+    print(grade);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text('COMP2211 Course Website'),
-        elevation: 0,
-        backgroundColor: Colors.teal,
-      ),
-      body: SingleChildScrollView(
-      child : Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-
-          SizedBox(height: 50),
-          Text('Bad guy Desmond',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-          SizedBox(height: 20),
-          Row(
-            mainAxisAlignment : MainAxisAlignment.center ,
+        key: _scaffoldKey,
+        appBar: AppBar(
+          title: Text('COMP2211 Course Website'),
+          elevation: 0,
+          backgroundColor: Colors.teal,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('images/IMG-20220604-WA0004.jpg'),
+              SizedBox(height: 50),
+              Text('Bad guy Desmond',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+              SizedBox(height: 20),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Image.asset('images/IMG-20220604-WA0004.jpg'),
+                SizedBox(
+                  width: 30,
+                ),
+                Column(children: [
+                  Container(
+                      height: 50,
+                      width: 0.2 * MediaQuery.of(context).size.width,
+                      color: Colors.red,
+                      child: TextField(
+                        controller: _questionFieldController,
+                        decoration: InputDecoration(
+                            labelText: 'COMP2211 grade F',
+                            border: OutlineInputBorder()),
+                      )),
+                  SizedBox(height: 50),
+                  Text('Your COMP2211 grade'),
+                  SizedBox(height: 20),
+                  Row(children: [
+                    RaisedButton(
+                        onPressed: () {
+                          /*_setimageA();*/
+                          //gradecontroller.updateGrade('A'.obs);
+                          Get.to(gradePageA());
+                        },
+                        color: Colors.blue,
+                        child: Text('A')),
+                    SizedBox(width: 20),
+                    RaisedButton(
+                        onPressed: () {
+                          /*_setimageB();*/
+                          //gradecontroller.updateGrade('B'.obs);
+                          Get.to(gradePageB()); 
+                        },
+                        color: Colors.red,
+                        child: Text('B')),
+                    SizedBox(width: 20),
+                    RaisedButton(
+                        onPressed: () {
+                          /*_setimageC();*/
+                          //gradecontroller.updateGrade('C'.obs);
+                          Get.to(gradePageC());
+                          setState(() {});
+                        },
+                        color: Colors.amber,
+                        child: Text('C'))
+                  ]),
+                ]),
+              ]),
+
               SizedBox(
-                width: 30,
+                height: 40,
               ),
-              Column(
-                children:[
-                Container(
-                  height : 50,
-                  width: 0.2 * MediaQuery.of(context).size.width,
-                  color : Colors.red,
-                  child: TextField(
-                  controller: _questionFieldController,
-                  decoration: InputDecoration(
-                  labelText: 'COMP2211 grade F', border: OutlineInputBorder()),
-                )),
-                SizedBox(height : 50),
-                Text(
-                  'Your COMP2211 grade'
-                ),
-                SizedBox(height: 20),
-                Row(
-                  children:[
-                    RaisedButton(
-                      onPressed: (){_setimageA();setState(() {});},
-                      color : Colors.blue,
-                      child : Text('A')
-                    ),
-                    SizedBox(width:20),
-                    RaisedButton(
-                      onPressed: (){_setimageB();setState(() {});},
-                      color : Colors.red,
-                      child : Text('B')
-                    ),
-                    SizedBox(width:20),
-                    RaisedButton(
-                      onPressed: (){_setimageC();setState(() {});},
-                      color : Colors.amber,
-                      child : Text('C')
-                    )]
-                ),
-               ]
+
+              GetBuilder<GradeCotroller>(builder: (_) {
+                return Text('Your COMP2211 grade is : ' +
+                    Get.find<GradeCotroller>().grade.string);
+              }),
+
+              
+
+              //Text('Your COMP2211 grade is : '+gradecontroller.grade.string),
+
+              SizedBox(
+                height: 20,
               ),
-            ]
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          
-          if(grade!='X')
-          Text('Your COMP2211 grade is : '+grade),
 
-           SizedBox(
-            height: 20,
-          ),
+              if (grade == 'A')
+                Stack(alignment: AlignmentDirectional.bottomCenter, children: [
+                  Container(
+                      height: 400,
+                      width: 800,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            //image: NetworkImage(_currentAnswer.image),
+                            image: NetworkImage(
+                                'images/de50d7af59a21e04e31cd0b82d40f80a.jpg')),
+                      )),
+                  Text('Congratulations!',
+                      style:
+                          TextStyle(fontSize: 50, fontWeight: FontWeight.bold))
+                ]),
 
-          if (grade=='A')
-            Container(
-                  height : 400,
-                  width: 400,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      //image: NetworkImage(_currentAnswer.image),
-                      image: NetworkImage('images/de50d7af59a21e04e31cd0b82d40f80a.jpg')
-                    ),
-                  )
-                  
-            ),
+              if (grade == 'B')
+                Stack(alignment: AlignmentDirectional.bottomCenter, children: [
+                  Container(
+                      height: 400,
+                      width: 800,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            //image: NetworkImage(_currentAnswer.image),
+                            image: NetworkImage(
+                                'images/85ac1264e77e338d659c549a0be45d34.jpg')),
+                      )),
+                  Text('Not bad',
+                      style:
+                          TextStyle(fontSize: 50, fontWeight: FontWeight.bold))
+                ]),
+              if (grade == 'C')
+                Stack(alignment: AlignmentDirectional.bottomCenter, children: [
+                  Container(
+                      height: 400,
+                      width: 400,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            //image: NetworkImage(_currentAnswer.image),
+                            image:
+                                NetworkImage('images/IMG-20220604-WA0004.jpg')),
+                      )),
+                  Text('GG nah hah',
+                      style:
+                          TextStyle(fontSize: 50, fontWeight: FontWeight.bold))
+                ]),
 
-          if (grade=='B')
-            Container(
-                  height : 400,
-                  width: 400,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      //image: NetworkImage(_currentAnswer.image),
-                      image: NetworkImage('images/85ac1264e77e338d659c549a0be45d34.jpg')
-                    ),
-                  )
-            ),
+              SizedBox(height: 50)
 
-        if (grade=='C')
-          Container(
-                  height : 400,
-                  width: 400,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      //image: NetworkImage(_currentAnswer.image),
-                      image: NetworkImage('images/IMG-20220604-WA0004.jpg')
-                    ),
-                  )
-          ),
-
-
-
-
+/*
+        ,
           if (_currentAnswer != null)
             Stack(
               children: [
@@ -257,9 +282,9 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                 ),
               ),
             ],
+          ), */
+            ],
           ),
-        ],
-      ),
-    ));
+        ));
   }
 }
