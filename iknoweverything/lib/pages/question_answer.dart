@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:iknoweverything/pages/gradeA.dart';
 import 'package:iknoweverything/pages/gradeB.dart';
 import 'package:iknoweverything/pages/gradeC.dart';
+import 'package:iknoweverything/charts/gradeChart.dart';
 
 class QuestionAnswerPage extends StatefulWidget {
   @override
@@ -217,7 +218,17 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                           TextStyle(fontSize: 50, fontWeight: FontWeight.bold))
                 ]),
 
+              SizedBox(height: 50),
+
+              Container(
+                width: 600,
+                height: 400,
+                child: SimpleBarChart.withSampleData(),
+              ),
+
               SizedBox(height: 50)
+
+
 
 /*
         ,

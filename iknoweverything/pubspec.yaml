@@ -35,6 +35,9 @@ dependencies:
     #GetX
     get: 4.2.1
 
+    #Chart
+    charts_flutter: 0.8.0
+
 
 
 dev_dependencies:
