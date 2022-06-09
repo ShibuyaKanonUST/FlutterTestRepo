@@ -258,8 +258,12 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
               
               SizedBox(height: 30),
 
-              DataTable2SimpleDemo(),
-              
+              Row(children:[
+                SizedBox(width:30),
+                DataTable2SimpleDemo(),
+                SizedBox(width:30)]),
+
+
               SizedBox(height: 50)
 
 
