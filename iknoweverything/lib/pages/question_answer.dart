@@ -13,6 +13,7 @@ import 'package:iknoweverything/charts/gradeChart.dart';
 import 'package:iknoweverything/charts/gradePieChart.dart';
 import 'package:iknoweverything/charts/lineChart.dart';
 import 'package:iknoweverything/charts/horiazontalBarChart.dart';
+import 'package:iknoweverything/table/dataTable.dart';
 
 class QuestionAnswerPage extends StatefulWidget {
   @override
@@ -133,7 +134,7 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                         onPressed: () {
                           /*_setimageB();*/
                           //gradecontroller.updateGrade('B'.obs);
-                          Get.to(gradePageB()); 
+                          Get.to(gradePageB());
                         },
                         color: Colors.red,
                         child: Text('B')),
@@ -159,8 +160,6 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
                 return Text('Your COMP2211 grade is : ' +
                     Get.find<GradeCotroller>().grade.string);
               }),
-
-              
 
               //Text('Your COMP2211 grade is : '+gradecontroller.grade.string),
 
@@ -239,19 +238,28 @@ class _QuestionAnswerPageState extends State<QuestionAnswerPage> {
 
               SizedBox(height: 30),
 
+              Text('Grade Performance'),
+
+              SizedBox(height: 5),
+
               Container(
                 width: 600,
                 height: 400,
                 child: SimpleLineChart.withSampleData(),
               ),
-              
+
+              SizedBox(height: 30),
+
               Container(
                 width: 600,
                 height: 400,
                 child: HorizontalBarChart.withSampleData(),
               ),
               
+              SizedBox(height: 30),
 
+              DataTable2SimpleDemo(),
+              
               SizedBox(height: 50)
 
 

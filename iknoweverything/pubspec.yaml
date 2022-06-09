@@ -38,6 +38,9 @@ dependencies:
     #Chart
     charts_flutter: 0.8.0
 
+    #Data Table
+    data_table_2: 2.0.2
+
 
 
 dev_dependencies:

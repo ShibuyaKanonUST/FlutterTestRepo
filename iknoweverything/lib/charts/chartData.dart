@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:iknoweverything/charts/gradeChart.dart';
 import 'package:iknoweverything/charts/gradePieChart.dart';
 
-List<String>     grade = ['A','B','C','D','F'];
-List<int>        year  = [1, 2, 3, 4, 5];
-List<int> distribution = [5, 45, 25, 7, 3];
+List<String>     grade = ['A+','A-','B','B-','B+'];
+List<int>        year  = [1, 2, 2, 3, 1];
+List<int> distribution = [85, 72, 80, 79, 67];
 List<int>       gpa = [2, 3, 2, 1, 4];  
-List<String>supervisor = ['Desmond','Kenneth','Cecia','Brian','James']; 
+List<String>supervisor = ['Desmond','Kenneth','Cecia','Brian','David']; 
 
 
 
